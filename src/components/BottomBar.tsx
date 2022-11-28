@@ -1,7 +1,8 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import Marquee from 'react-fast-marquee';
 import {supabase} from '../utils/client';
-import '../style/BottomBar.module.scss';
+import styles from '../style/colors.module.scss';
+import Sparkles from './Sparkles';
 
 interface IMessage {
   id: number;
@@ -31,7 +32,7 @@ const ServiceMessage = () => (
       {' '}
       na numer
       {' '}
-      <span className="font-bold">795 421 921</span>
+      <span className="font-bold">794 531 752</span>
       !
     </div>
   </div>
@@ -74,21 +75,33 @@ export default function BottomBar() {
   }, []);
 
   return (
-    <div
-      className="w-full bg-orange-100 py-2 mb-12 mx-14 overflow-hidden rounded-xl transition-opacity duration-1000 backdrop-blur-xg"
-      style={{opacity: messages.length > 0 ? 0.9 : 0}}
-    >
-      <Marquee gradient={false} speed={50} style={{margin: 0, padding: 0}}>
-        <ServiceMessage />
-
-        {messages.length > 0 && <Divider />}
-        {messages.map((message, index) => (
-          <React.Fragment key={message.id}>
-            <Message message={message} />
-            <Divider />
-          </React.Fragment>
-        ))}
-      </Marquee>
+    <div className="relative w-full flex-1 mb-12 mx-14 transition-opacity duration-1000" style={{opacity: messages.length > 0 ? 1 : 0}}>
+      <div
+        className={`${styles.glowbox} w-full py-2 bg-white rounded-xl overflow-hidden min-h-[4rem]`}
+      >
+        <Marquee
+          gradient={false}
+          speed={35}
+          style={{
+            margin: 0, padding: 0, overflow: 'hidden', whiteSpace: 'nowrap', position: 'absolute',
+          }}
+        >
+          <ServiceMessage />
+          {messages.length > 0 && <Divider />}
+          {messages.map((message, index) => (
+            <React.Fragment key={message.id}>
+              <Message message={message} />
+              <Divider />
+            </React.Fragment>
+          ))}
+        </Marquee>
+      </div>
+      <div className="absolute top-[-28px] left-[-20px] rotate-[-10deg]">
+        <Sparkles className={`h-10 w-10 ${styles.glowdrop}`} fill="white" />
+      </div>
+      <div className="absolute bottom-[-28px] right-[-20px] [transform:scale(-1,-1)rotate(10deg)]">
+        <Sparkles className={`h-10 w-10 ${styles.glowdrop}`} fill="white" />
+      </div>
     </div>
   );
 }

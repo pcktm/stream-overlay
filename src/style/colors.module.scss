@@ -1,0 +1,18 @@
+.glowbox {
+  box-shadow:
+    0 0 20px #86198f,
+    -15px 0 30px #7c3aed,
+    15px 0 30px #7c3aed,
+    inset 0 0 20px rgba(124, 58, 237, 0.7);
+}
+
+.glowdrop {
+  filter: drop-shadow(
+    0 0 5px #86198f
+  ) drop-shadow(
+    0px 0px 20px #7c3aed
+  ) drop-shadow(
+    0px 0px 15px #a21caf
+  );
+}
+
