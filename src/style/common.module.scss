@@ -1,0 +1,29 @@
+.glowbox {
+  box-shadow:
+    0 0 20px #be185d,
+    -15px 0 30px #b91c1c,
+    15px 0 30px #b91c1c,
+    inset 0 0 20px #ea580c;
+}
+
+.glowdrop {
+  filter: drop-shadow(
+    0 0 5px #be185d
+  ) drop-shadow(
+    0px 0px 20px #b91c1c
+  ) drop-shadow(
+    0px 0px 15px #b91c1c
+  );
+}
+
+.visible {
+  opacity: 1;
+  filter: blur(0);
+  display: block;
+}
+
+.hidden {
+  opacity: 0;
+  filter: blur(8px);
+  display: none;
+}

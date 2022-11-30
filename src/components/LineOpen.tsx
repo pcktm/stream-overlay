@@ -1,53 +1,16 @@
 /* eslint-disable max-len */
 import {useEffect, useState} from 'react';
 import style from '../style/LineOpen.module.scss';
+import commonStyle from '../style/common.module.scss';
 import {supabase} from '../utils/client';
+import {useSettingsStore} from '../store/settings';
 
 export default function LineOpen() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleTableEvent = (payload: any) => {
-    console.log(payload);
-    if (payload.new && payload.new.name === 'linesOpen') {
-      console.log(payload.new);
-      if (payload.new.value?.value === true || payload.new.value?.value === false) {
-        setIsOpen(payload.new.value.value);
-      } else {
-        setIsOpen(false);
-      }
-    }
-  };
-
-  useEffect(() => {
-    const channel = supabase
-      .channel('table-db-changes')
-      .on('postgres_changes', {
-        event: 'UPDATE',
-        schema: 'public',
-        table: 'settings',
-      }, (payload) => handleTableEvent(payload))
-      .subscribe();
-    return () => {
-      channel.unsubscribe();
-    };
-  });
-
-  // run once to get initial value
-  useEffect(() => {
-    const fetchIsOpen = async () => {
-      const {data, error} = await supabase.from('settings').select('*').eq('name', 'linesOpen');
-      if (error) {
-        console.log(error);
-      } else if (data[0].value?.value === true || data[0].value?.value === false) {
-        setIsOpen(data[0].value?.value ?? false);
-      }
-    };
-    fetchIsOpen();
-  }, []);
+  const isOpen = useSettingsStore((state) => state.linesOpen);
 
   return (
     <div
-      className={`text-white mr-20 min-h-[400px] min-w-[400px] ${style.container} ${isOpen ? style.visible : style.hidden}`}
+      className={`text-white mr-20 min-h-[400px] min-w-[400px] ${style.container} ${isOpen ? commonStyle.visible : commonStyle.hidden}`}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

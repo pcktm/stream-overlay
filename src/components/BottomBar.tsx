@@ -1,8 +1,9 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import Marquee from 'react-fast-marquee';
 import {supabase} from '../utils/client';
-import styles from '../style/colors.module.scss';
+import styles from '../style/common.module.scss';
 import Sparkles from './Sparkles';
+import {useSettingsStore} from '../store/settings';
 
 interface IMessage {
   id: number;
@@ -42,6 +43,7 @@ const Divider = () => <div className="mx-4 text-lg text-gray-600">|</div>;
 
 export default function BottomBar() {
   const [messages, setMessages] = useState<IMessage[]>([]);
+  const usePolling = useSettingsStore((state) => state.usePolling);
 
   const fetchMessages = async (limit = 10) => {
     const {data, error} = await supabase.from('messages').select('*').order('created_at').limit(limit);
@@ -68,11 +70,21 @@ export default function BottomBar() {
     return () => {
       channel.unsubscribe();
     };
-  });
+  }, [handleTableEvent]);
 
   useEffect(() => {
     fetchMessages();
   }, []);
+
+  useEffect(() => {
+    if (usePolling) {
+      const interval = setInterval(() => {
+        fetchMessages();
+      }, 10000);
+      return () => clearInterval(interval);
+    }
+    return () => {};
+  }, [usePolling]);
 
   return (
     <div className="relative w-full flex-1 mb-12 mx-14 transition-opacity duration-1000" style={{opacity: messages.length > 0 ? 1 : 0}}>

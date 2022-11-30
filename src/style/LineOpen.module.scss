@@ -1,56 +1,60 @@
 .star {
-  @keyframes glow {
+  @keyframes sglow {
     100% {
       filter: drop-shadow(
-        0px 0px 75px #db2777
+        0px 0px 75px #be185d
       ) drop-shadow(
-        0px 0px 75px #a21caf
+        0px 0px 75px #b91c1c
       ) drop-shadow(
-        0 0 50px #86198f
+        0 0 50px #b91c1c
       );
     }
   
     0% {
       filter: drop-shadow(
-        0px 0px 100px #1d4ed8
+        0px 0px 75px #db2777
       ) drop-shadow(
-        0px 0px 100px #2563eb
+        0px 0px 75px #881337
       ) drop-shadow(
-        0 0 75px #9333ea
+        0 0 50px #831843
       );
     }
   }
-  animation: glow 1s infinite alternate ease-in-out;
+  animation: sglow 1s infinite alternate ease-in-out;
+  transform-origin: center;
+  overflow: visible;
 }
 
 .text {
-  @keyframes glow {
+  @keyframes tglow {
     100% {
       filter: drop-shadow(
-        0px 0px 80px #1d4ed8
+        0 0 5px #be185d
       ) drop-shadow(
-        0px 0px 75px #2563eb
+        0px 0px 20px #b91c1c
       ) drop-shadow(
-        0 0 50px #9333ea
+        0px 0px 15px #b91c1c
       );
     }
     0% {
       filter: drop-shadow(
         0px 0px 75px #db2777
       ) drop-shadow(
-        0px 0px 75px #a21caf
+        0px 0px 75px #881337
       ) drop-shadow(
-        0 0 50px #86198f
+        0 0 50px #831843
       );
     }
   }
-  animation: glow 1s infinite ease-in-out alternate;
+  animation: tglow 1s infinite ease-in-out alternate;
+  transform-origin: center;
+  overflow:visible;
 }
 
 .container {
   @keyframes sway {
     0% {
-      transform: rotate(-2.5deg) scale(1.08);
+      transform: rotate(-2.5deg) scale(1.15);
     }
     100% {
       transform: rotate(3.5deg) scale(1);
@@ -59,14 +63,5 @@
   animation: sway 1s infinite alternate ease-in-out;
   transform-origin: center;
   transition: all 2s ease-in-out;
-}
-
-.visible {
-  opacity: 1;
-  filter: blur(0);
-}
-
-.hidden {
-  opacity: 0;
-  filter: blur(8px);
+  overflow: visible;
 }
