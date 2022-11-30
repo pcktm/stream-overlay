@@ -1,5 +1,3 @@
-import styles from '../style/colors.module.scss';
-
 /* eslint-disable max-len */
 export default function Sparkles({className, fill}: {className?: string, fill?: string}) {
   return (

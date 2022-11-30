@@ -14,7 +14,8 @@ export default function BottomTextDisplay() {
   }, [text, visibleText]);
 
   return (
-    <div className={`w-full flex justify-start flex-row transition-all duration-1000 mb-10 mx-14 ${text.length > 0 ? commonStyle.visible : commonStyle.hidden}`}>
+    <div className={`w-full flex flex-col justify-start flex-row transition-all duration-1000 mb-10 mx-14 ${text.length > 0 ? commonStyle.visible : commonStyle.hidden}`}>
+
       <div
         // eslint-disable-next-line max-len
         className={`text-3xl text-center py-6 px-8 bg-white max-w-lg break-words rounded-xl ${commonStyle.glowbox}`}

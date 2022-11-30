@@ -29,13 +29,10 @@ function App() {
   }, [fetchSettings]);
 
   useEffect(() => {
-    if (usePolling) {
-      const interval = setInterval(() => {
-        fetchSettings();
-      }, 10000);
-      return () => clearInterval(interval);
-    }
-    return () => {};
+    const interval = setInterval(() => {
+      fetchSettings();
+    }, usePolling ? 10 * 1000 : 60 * 1000);
+    return () => clearInterval(interval);
   }, [fetchSettings, usePolling]);
 
   return (

@@ -2,8 +2,10 @@ import React, {useCallback, useEffect, useState} from 'react';
 import Marquee from 'react-fast-marquee';
 import {supabase} from '../utils/client';
 import styles from '../style/common.module.scss';
-import Sparkles from './Sparkles';
+import Hat from './Hat';
 import {useSettingsStore} from '../store/settings';
+import Scarf from './Scarf';
+import Sparkles from './Sparkles';
 
 interface IMessage {
   id: number;
@@ -54,7 +56,7 @@ export default function BottomBar() {
     }
   };
 
-  const handleTableEvent = useCallback((payload: any) => {
+  const handleTableEvent = useCallback(() => {
     fetchMessages();
   }, []);
 
@@ -65,7 +67,7 @@ export default function BottomBar() {
         event: '*',
         schema: 'public',
         table: 'messages',
-      }, (payload) => handleTableEvent(payload))
+      }, () => handleTableEvent())
       .subscribe();
     return () => {
       channel.unsubscribe();
@@ -87,15 +89,16 @@ export default function BottomBar() {
   }, [usePolling]);
 
   return (
-    <div className="relative w-full flex-1 mb-12 mx-14 transition-opacity duration-1000" style={{opacity: messages.length > 0 ? 1 : 0}}>
+    <div className={`relative w-full flex-1 mb-12 mx-14 transition-all duration-1000 ${messages.length > 0 ? styles.visible : styles.hidden}`}>
       <div
         className={`${styles.glowbox} w-full py-2 bg-white rounded-xl overflow-hidden min-h-[4rem]`}
+        style={{zIndex: 1}}
       >
         <Marquee
           gradient={false}
           speed={35}
           style={{
-            margin: 0, padding: 0, overflow: 'hidden', whiteSpace: 'nowrap', position: 'absolute',
+            margin: 0, padding: 0, overflow: 'hidden', whiteSpace: 'nowrap', position: 'absolute', zIndex: 2,
           }}
         >
           <ServiceMessage />
@@ -108,11 +111,11 @@ export default function BottomBar() {
           ))}
         </Marquee>
       </div>
-      <div className="absolute top-[-28px] left-[-20px] rotate-[-10deg]">
-        <Sparkles className={`h-10 w-10 ${styles.glowdrop}`} fill="white" />
+      <div className="absolute top-[-27px] left-[25px] rotate-[1deg]" style={{zIndex: 3}}>
+        <Scarf className="h-28 z-10 w-28 drop-shadow-xl" fill="white" />
       </div>
-      <div className="absolute bottom-[-28px] right-[-20px] [transform:scale(-1,-1)rotate(10deg)]">
-        <Sparkles className={`h-10 w-10 ${styles.glowdrop}`} fill="white" />
+      <div className="absolute bottom-[-28px] right-[-20px] [transform:scale(-1,-1)rotate(10deg)]" style={{zIndex: 3}}>
+        <Sparkles className={`w-10 h-10 ${styles.glowdrop}`} fill="white" />
       </div>
     </div>
   );
