@@ -5,6 +5,7 @@ interface SettingsState {
   linesOpen: boolean;
   bottomText: string;
   usePolling: boolean;
+  useSnowfall: boolean;
   handleRealtimeEvent: (payload: any) => void;
   fetchSettings: () => Promise<void>;
 }
@@ -13,6 +14,7 @@ export const useSettingsStore = create<SettingsState>((set) => ({
   linesOpen: false,
   bottomText: '',
   usePolling: false,
+  useSnowfall: false,
 
   handleRealtimeEvent: (payload) => {
     console.debug('realtime event', payload);
@@ -30,6 +32,12 @@ export const useSettingsStore = create<SettingsState>((set) => ({
     if (payload.new.name === 'bottomText' && typeof payload.new.value.value === 'string') {
       set({bottomText: payload.new.value.value ?? ''});
     }
+    if (payload.new.name === 'usePolling') {
+      set({usePolling: payload.new.value.value === true});
+    }
+    if (payload.new.name === 'useSnowfall') {
+      set({useSnowfall: payload.new.value.value === true});
+    }
   },
   fetchSettings: async () => {
     const {data, error} = await supabase
@@ -44,10 +52,12 @@ export const useSettingsStore = create<SettingsState>((set) => ({
       const linesOpen = data.find((setting) => setting.name === 'linesOpen');
       const bottomText = data.find((setting) => setting.name === 'bottomText');
       const usePolling = data.find((setting) => setting.name === 'usePolling');
+      const useSnowfall = data.find((setting) => setting.name === 'useSnowfall');
       set({
         linesOpen: linesOpen?.value?.value === true,
         bottomText: bottomText?.value?.value ?? '',
         usePolling: usePolling?.value?.value === true,
+        useSnowfall: useSnowfall?.value?.value === true,
       });
     }
   },

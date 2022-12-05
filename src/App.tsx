@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import BottomBar from './components/BottomBar';
 import BottomTextDisplay from './components/BottomTextDisplay';
 import LineOpen from './components/LineOpen';
+import Snowfall from './components/Snowfall';
 import {useSettingsStore} from './store/settings';
 import {supabase} from './utils/client';
 
@@ -36,7 +37,7 @@ function App() {
   }, [fetchSettings, usePolling]);
 
   return (
-    <div className="flex flex-col min-h-screen min-w-full select-none">
+    <div className="flex flex-col min-h-screen min-w-full select-none relative">
       <div className="flex-1 relative flex">
         <div className="absolute right-0 bottom-0">
           <LineOpen />
@@ -48,6 +49,8 @@ function App() {
       <div className="flex w-full">
         <BottomBar />
       </div>
+
+      <Snowfall />
     </div>
   );
 }

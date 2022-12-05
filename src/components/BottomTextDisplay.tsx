@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react';
 import {useSettingsStore} from '../store/settings';
-import {supabase} from '../utils/client';
 import commonStyle from '../style/common.module.scss';
 
 export default function BottomTextDisplay() {
@@ -14,13 +13,14 @@ export default function BottomTextDisplay() {
   }, [text, visibleText]);
 
   return (
-    <div className={`w-full flex flex-col justify-start flex-row transition-all duration-1000 mb-10 mx-14 ${text.length > 0 ? commonStyle.visible : commonStyle.hidden}`}>
-
+  // eslint-disable-next-line max-len
+    <div className={`transition-all duration-1000 mb-10 mx-14 ${text.length > 0 ? commonStyle.visible : commonStyle.hidden}`}>
       <div
-        // eslint-disable-next-line max-len
-        className={`text-3xl text-center py-6 px-8 bg-white max-w-lg break-words rounded-xl ${commonStyle.glowbox}`}
+        className={`py-6 px-6 bg-white max-w-md rounded-xl ${commonStyle.glowbox}`}
       >
-        {visibleText}
+        <div className="w-100 h-100 overflow-hidden overflow break-words text-3xl text-center">
+          {visibleText}
+        </div>
       </div>
     </div>
   );
