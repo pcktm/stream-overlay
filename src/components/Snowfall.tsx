@@ -22,7 +22,7 @@ export default function Snowfall() {
         height: '100%',
         zIndex: -1,
         opacity: 0.7,
-        filter: 'blur(1.2px)',
+        filter: 'blur(1.1px)',
       }}
     />
   );
