@@ -6,6 +6,7 @@ interface SettingsState {
   bottomText: string;
   usePolling: boolean;
   useSnowfall: boolean;
+  showTeddy: boolean;
   handleRealtimeEvent: (payload: any) => void;
   fetchSettings: () => Promise<void>;
 }
@@ -15,6 +16,7 @@ export const useSettingsStore = create<SettingsState>((set) => ({
   bottomText: '',
   usePolling: false,
   useSnowfall: false,
+  showTeddy: false,
 
   handleRealtimeEvent: (payload) => {
     console.debug('realtime event', payload);
@@ -38,6 +40,9 @@ export const useSettingsStore = create<SettingsState>((set) => ({
     if (payload.new.name === 'useSnowfall') {
       set({useSnowfall: payload.new.value.value === true});
     }
+    if (payload.new.name === 'showTeddy') {
+      set({showTeddy: payload.new.value.value === true});
+    }
   },
   fetchSettings: async () => {
     const {data, error} = await supabase
@@ -53,11 +58,13 @@ export const useSettingsStore = create<SettingsState>((set) => ({
       const bottomText = data.find((setting) => setting.name === 'bottomText');
       const usePolling = data.find((setting) => setting.name === 'usePolling');
       const useSnowfall = data.find((setting) => setting.name === 'useSnowfall');
+      const showTeddy = data.find((setting) => setting.name === 'showTeddy');
       set({
         linesOpen: linesOpen?.value?.value === true,
         bottomText: bottomText?.value?.value ?? '',
         usePolling: usePolling?.value?.value === true,
         useSnowfall: useSnowfall?.value?.value === true,
+        showTeddy: showTeddy?.value?.value === true,
       });
     }
   },
