@@ -280,6 +280,11 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@fontsource/archivo@^4.5.10":
+  version "4.5.10"
+  resolved "https://registry.yarnpkg.com/@fontsource/archivo/-/archivo-4.5.10.tgz#fdd45aba687f5532cf3d33bca9ffb02bc95c8b80"
+  integrity sha512-XBP+/ikevEu8huLBhBcV7Sdemx7R9KS07klXt8bcLrS9SBDWDzgKFYB4wxa9067uVl+0RooTKIMVbTLnKZsbQw==
+
 "@fontsource/inter@^4.5.14":
   version "4.5.14"
   resolved "https://registry.yarnpkg.com/@fontsource/inter/-/inter-4.5.14.tgz#3944b809aa7bf27dacd20bdc04a49fb738959724"

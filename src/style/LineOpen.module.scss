@@ -2,21 +2,21 @@
   @keyframes sglow {
     100% {
       filter: drop-shadow(
-        0px 0px 75px #be185d
+        0px 0px 55px #be185d
       ) drop-shadow(
-        0px 0px 75px #b91c1c
+        0px 0px 55px #b91c1c
       ) drop-shadow(
-        0 0 50px #b91c1c
+        0 0 40px #b91c1c
       );
     }
   
     0% {
       filter: drop-shadow(
-        0px 0px 75px #db2777
+        0px 0px 40px #db2777
       ) drop-shadow(
-        0px 0px 75px #881337
+        0px 0px 40px #881337
       ) drop-shadow(
-        0 0 50px #831843
+        0 0 20px #831843
       );
     }
   }
@@ -31,18 +31,18 @@
       filter: drop-shadow(
         0 0 5px #be185d
       ) drop-shadow(
-        0px 0px 20px #b91c1c
+        0px 0px 10px #b91c1c
       ) drop-shadow(
-        0px 0px 15px #b91c1c
+        0px 0px 10px #b91c1c
       );
     }
     0% {
       filter: drop-shadow(
-        0px 0px 75px #db2777
+        0px 0px 20px #db2777
       ) drop-shadow(
-        0px 0px 75px #881337
+        0px 0px 20px #881337
       ) drop-shadow(
-        0 0 50px #831843
+        0 0 15px #831843
       );
     }
   }

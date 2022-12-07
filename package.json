@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/archivo": "^4.5.10",
     "@fontsource/inter": "^4.5.14",
     "@fontsource/merriweather": "^4.5.14",
     "@supabase/supabase-js": "^2.1.0",
