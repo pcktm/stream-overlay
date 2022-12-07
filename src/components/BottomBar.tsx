@@ -35,7 +35,7 @@ const ServiceMessage = () => (
       {' '}
       na numer
       {' '}
-      <span className="font-bold">794 531 752</span>
+      <span className="font-bold">513 717 393</span>
       !
     </div>
   </div>
@@ -47,18 +47,14 @@ export default function BottomBar() {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const usePolling = useSettingsStore((state) => state.usePolling);
 
-  const fetchMessages = async (limit = 10) => {
+  const fetchMessages = useCallback(async (limit = 10) => {
     const {data, error} = await supabase.from('messages').select('*').order('created_at').limit(limit);
     if (error) {
       console.log(error);
     } else {
       setMessages(data);
     }
-  };
-
-  const handleTableEvent = useCallback(() => {
-    fetchMessages();
-  }, []);
+  }, [setMessages]);
 
   useEffect(() => {
     const channel = supabase
@@ -67,26 +63,23 @@ export default function BottomBar() {
         event: '*',
         schema: 'public',
         table: 'messages',
-      }, () => handleTableEvent())
+      }, () => fetchMessages())
       .subscribe();
     return () => {
       channel.unsubscribe();
     };
-  }, [handleTableEvent]);
+  }, [fetchMessages]);
 
   useEffect(() => {
     fetchMessages();
-  }, []);
+  }, [fetchMessages]);
 
   useEffect(() => {
-    if (usePolling) {
-      const interval = setInterval(() => {
-        fetchMessages();
-      }, 10000);
-      return () => clearInterval(interval);
-    }
-    return () => {};
-  }, [usePolling]);
+    const interval = setInterval(() => {
+      fetchMessages();
+    }, usePolling ? 10 * 1000 : 60 * 1000);
+    return () => clearInterval(interval);
+  }, [fetchMessages, usePolling]);
 
   return (
     <div className={`relative w-full flex-1 mb-12 mx-14 transition-all duration-1000 ${messages.length > 0 ? styles.visible : styles.hidden}`}>
