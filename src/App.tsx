@@ -3,6 +3,7 @@ import BottomBar from './components/BottomBar';
 import BottomTextDisplay from './components/BottomTextDisplay';
 import LineOpen from './components/LineOpen';
 import Snowfall from './components/Snowfall';
+import TeddyBear from './components/TeddyBear';
 import {useSettingsStore} from './store/settings';
 import {supabase} from './utils/client';
 
@@ -40,10 +41,13 @@ function App() {
     <div className="flex flex-col min-h-screen min-w-full select-none relative">
       <div className="flex-1 relative flex">
         <div className="absolute right-0 bottom-0">
-          <LineOpen />
+          {/* <LineOpen /> */}
         </div>
         <div className="absolute bottom-0 w-full">
           <BottomTextDisplay />
+        </div>
+        <div className="absolute left-0 top-[35%]">
+          <TeddyBear />
         </div>
       </div>
       <div className="flex w-full">

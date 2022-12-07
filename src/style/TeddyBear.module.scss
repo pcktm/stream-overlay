@@ -1,0 +1,14 @@
+@keyframes slideOut {
+  100% {
+    transform: translateX(0);
+  }
+  0% {
+    transform: translateX(-100%);
+  }
+}
+
+.teddy {
+  // every 1 minute slide out for 20 seconds
+  animation: slideOut 20s 1m;
+  animation-fill-mode: forwards;
+}
