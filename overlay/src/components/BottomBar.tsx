@@ -52,7 +52,7 @@ export default function BottomBar() {
     if (error) {
       console.log(error);
     } else {
-      setMessages(data);
+      setMessages(data as IMessage[]);
     }
   }, [setMessages]);
 
@@ -104,12 +104,12 @@ export default function BottomBar() {
           ))}
         </Marquee>
       </div>
-      <div className="absolute top-[-27px] left-[25px] rotate-[1deg]" style={{zIndex: 3}}>
+      {/* <div className="absolute top-[-27px] left-[25px] rotate-[1deg]" style={{zIndex: 3}}>
         <Scarf className="h-28 z-10 w-28 drop-shadow-xl" fill="white" />
       </div>
       <div className="absolute bottom-[-28px] right-[-20px] [transform:scale(-1,-1)rotate(10deg)]" style={{zIndex: 3}}>
         <Sparkles className={`w-10 h-10 ${styles.glowdrop}`} fill="white" />
-      </div>
+      </div> */}
     </div>
   );
 }

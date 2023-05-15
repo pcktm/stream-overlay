@@ -17,7 +17,7 @@ export default function TeddyBear() {
 
   return (
     <div className={`max-w-[200px] ml-10 transition-all duration-1000 ${isVisible ? 'translate-x-[-150%]' : 'translate-x-[0px]'}`}>
-      <img src={teddyImg} className={`${showTeddy ? 'opacity-100' : 'opacity-0'} transition-all duration-100`} alt="Teddy Bear" />
+      <img src={teddyImg} className={`${showTeddy ? 'opacity-100' : 'opacity-0'} transition-all duration-100`} alt="Some epic alt text lol" />
     </div>
   );
 }

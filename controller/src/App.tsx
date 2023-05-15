@@ -1,11 +1,11 @@
 import {useEffect, useState} from 'react';
-import BottomBar from './components/BottomBar';
-import BottomTextDisplay from './components/BottomTextDisplay';
-import LineOpen from './components/LineOpen';
-import Snowfall from './components/Snowfall';
-import TeddyBear from './components/TeddyBear';
+import {Box} from '@mui/material';
 import {useSettingsStore} from './store/settings';
 import {supabase} from './utils/client';
+import AppBar from './components/AppBar';
+import TextboxEditor from './components/TextboxEditor';
+import MessageEditor from './components/MessageEditor';
+import ActionBox from './components/ActionBox';
 
 function App() {
   const handleRealtimeEvent = useSettingsStore((state) => state.handleRealtimeEvent);
@@ -38,23 +38,17 @@ function App() {
   }, [fetchSettings, usePolling]);
 
   return (
-    <div className="flex flex-col min-h-screen min-w-full select-none relative">
-      <div className="flex-1 relative flex">
-        <div className="absolute right-0 bottom-0">
-          {/* <LineOpen /> */}
-        </div>
-        <div className="absolute bottom-0 w-full">
-          <BottomTextDisplay />
-        </div>
-        <div className="absolute left-0 top-[35%]">
-          <TeddyBear />
-        </div>
-      </div>
-      <div className="flex w-full">
-        <BottomBar />
-      </div>
-
-      <Snowfall />
+    <div>
+      <AppBar />
+      <Box sx={{padding: 2}}>
+        <ActionBox />
+      </Box>
+      <Box sx={{padding: 2}}>
+        <TextboxEditor />
+      </Box>
+      <Box sx={{padding: 2}}>
+        <MessageEditor />
+      </Box>
     </div>
   );
 }

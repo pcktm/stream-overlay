@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react';
+import Balancer from 'react-wrap-balancer';
 import {useSettingsStore} from '../store/settings';
 import commonStyle from '../style/common.module.scss';
 
@@ -19,7 +20,7 @@ export default function BottomTextDisplay() {
         className={`py-6 px-6 bg-white max-w-md rounded-xl ${commonStyle.glowbox}`}
       >
         <div className="w-100 h-100 overflow-hidden overflow break-words text-3xl text-center">
-          {visibleText}
+          <Balancer>{visibleText}</Balancer>
         </div>
       </div>
     </div>
