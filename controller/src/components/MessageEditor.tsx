@@ -63,7 +63,7 @@ export default function MessageEditor() {
   }, [fetchMessages, usePolling]);
 
   return (
-    <Paper elevation={0} sx={{padding: 2}}>
+    <Paper elevation={0}>
       <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
         Messages
       </Typography>

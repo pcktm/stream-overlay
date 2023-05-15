@@ -31,11 +31,11 @@ export default function TextboxEditor() {
 
         <TextField
           multiline
-          rows={4}
+          rows={7}
           value={text}
           onChange={(e) => setText(e.target.value)}
           fullWidth
-          label="Bottom Box Content"
+          label="Content"
           variant="outlined"
         />
         <Box sx={{marginTop: 2, display: 'flex'}}>

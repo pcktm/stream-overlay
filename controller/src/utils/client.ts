@@ -10,9 +10,18 @@ export const effectsChannel = supabase.channel('effects', {
   },
 });
 
+export const popupChannel = supabase.channel('popup', {
+  config: {
+    broadcast: {ack: true},
+  },
+});
+
 try {
   effectsChannel.subscribe((payload) => {
     console.log('effectsChannel', payload);
+  });
+  popupChannel.subscribe((payload) => {
+    console.log('popupChannel', payload);
   });
 } catch (error) {
   console.error(error);

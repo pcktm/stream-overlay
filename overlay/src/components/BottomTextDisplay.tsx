@@ -9,18 +9,27 @@ export default function BottomTextDisplay() {
 
   useEffect(() => {
     if (text !== visibleText && text.length > 0) {
-      setVisibleText(text);
+      let newText = text.replace(/\n{2,}/g, '\n').replace(/\n$/, '');
+      newText = newText.replace(/\n/g, ' \n ');
+      setVisibleText(newText);
     }
   }, [text, visibleText]);
 
   return (
   // eslint-disable-next-line max-len
-    <div className={`transition-all duration-1000 mb-10 mx-14 ${text.length > 0 ? commonStyle.visible : commonStyle.hidden}`}>
+    <div className={`transition-all duration-1000 mb-16 mx-14 ${text.length > 0 ? commonStyle.visible : commonStyle.hidden}`}>
       <div
-        className={`py-6 px-6 bg-zinc-950 max-w-md rounded-xl ${commonStyle.glowbox}`}
+        className="py-6 px-6 bg-black bg-opacity-95 max-w-md rounded-xl"
       >
         <div className="w-100 h-100 overflow-hidden overflow break-words text-3xl text-center text-gray-100">
-          <Balancer>{visibleText}</Balancer>
+          <div className="flex flex-col justify-center items-center">
+            {visibleText.split('\n').map((line, index) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <div key={index} className="flex flex-row">
+                <Balancer>{line.trim()}</Balancer>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

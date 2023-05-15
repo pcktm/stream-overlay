@@ -2,10 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import Marquee from 'react-fast-marquee';
 import {supabase} from '../utils/client';
 import styles from '../style/common.module.scss';
-import Hat from './Hat';
 import {useSettingsStore} from '../store/settings';
-import Scarf from './Scarf';
-import Sparkles from './Sparkles';
 
 interface IMessage {
   id: number;
@@ -19,7 +16,7 @@ const Message = ({message}: {message: IMessage}) => (
     {message.sender && (
       <>
         <div className="text-lg text-gray-300 ml-2">-</div>
-        <div className="ml-2 text-lg font-semibold text-gray-300">{message.sender.trim()}</div>
+        <div className="ml-2 text-lg font-semibold text-gray-200">{message.sender.trim()}</div>
       </>
     )}
   </div>
@@ -27,7 +24,7 @@ const Message = ({message}: {message: IMessage}) => (
 
 const ServiceMessage = () => (
   <div className="flex flex-col">
-    <div className="text-md text-gray-300 self-center">Chcesz kogoś pozdrowić?</div>
+    <div className="text-md text-gray-200 self-center">Chcesz kogoś pozdrowić?</div>
     <div className="text-md text-gray-300">
       Wyślij
       {' '}
@@ -95,6 +92,7 @@ export default function BottomBar() {
           }}
         >
           <ServiceMessage />
+
           {messages.length > 0 && <Divider />}
           {messages.map((message, index) => (
             <React.Fragment key={message.id}>

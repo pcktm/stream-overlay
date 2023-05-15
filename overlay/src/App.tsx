@@ -2,11 +2,11 @@ import {useEffect, useState} from 'react';
 import BottomBar from './components/BottomBar';
 import BottomTextDisplay from './components/BottomTextDisplay';
 import LineOpen from './components/LineOpen';
-import Snowfall from './components/Snowfall';
-import TeddyBear from './components/TeddyBear';
+import Popup from './components/Popup';
 import {useSettingsStore} from './store/settings';
 import {supabase} from './utils/client';
 import {CanvasBackgroundConfetti} from './components/Confetti';
+import SmokPlayer from './components/SmokPlayer';
 
 function App() {
   const handleRealtimeEvent = useSettingsStore((state) => state.handleRealtimeEvent);
@@ -47,15 +47,16 @@ function App() {
         <div className="absolute bottom-0 w-full">
           <BottomTextDisplay />
         </div>
-        <div className="absolute left-0 top-[35%]">
-          <TeddyBear />
+        <div className="absolute right-0 bottom-[5%]">
+          <Popup />
         </div>
       </div>
       <div className="flex w-full">
         <BottomBar />
       </div>
-
-      <Snowfall />
+      {/* <div className="absolute top-0 left-0 w-full h-full z-[20]">
+        <SmokPlayer />
+      </div> */}
       <CanvasBackgroundConfetti />
     </div>
   );

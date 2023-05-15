@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {Box} from '@mui/material';
+import {Box, Divider, Stack} from '@mui/material';
 import {useSettingsStore} from './store/settings';
 import {supabase} from './utils/client';
 import AppBar from './components/AppBar';
@@ -41,13 +41,27 @@ function App() {
     <div>
       <AppBar />
       <Box sx={{padding: 2}}>
-        <ActionBox />
-      </Box>
-      <Box sx={{padding: 2}}>
-        <TextboxEditor />
-      </Box>
-      <Box sx={{padding: 2}}>
-        <MessageEditor />
+        <Stack
+          direction={{
+            xs: 'column',
+            sm: 'row',
+          }}
+          spacing={0}
+        >
+          <Box flex={1}>
+            <ActionBox />
+          </Box>
+          <Divider orientation="vertical" flexItem sx={{marginY: 3}} />
+          <Box flex={1}>
+            <TextboxEditor />
+          </Box>
+        </Stack>
+
+        <Divider sx={{marginY: 2, marginX: 10}} />
+
+        <Box sx={{paddingX: 2}}>
+          <MessageEditor />
+        </Box>
       </Box>
     </div>
   );
