@@ -15,11 +15,11 @@ interface IMessage {
 
 const Message = ({message}: {message: IMessage}) => (
   <div className="flex flex-row items-center">
-    <div className="text-lg text-gray-700">{message.content.trim()}</div>
+    <div className="text-lg text-gray-200">{message.content.trim()}</div>
     {message.sender && (
       <>
-        <div className="text-lg text-gray-500 ml-2">-</div>
-        <div className="ml-2 text-lg font-semibold text-gray-700">{message.sender.trim()}</div>
+        <div className="text-lg text-gray-300 ml-2">-</div>
+        <div className="ml-2 text-lg font-semibold text-gray-300">{message.sender.trim()}</div>
       </>
     )}
   </div>
@@ -27,8 +27,8 @@ const Message = ({message}: {message: IMessage}) => (
 
 const ServiceMessage = () => (
   <div className="flex flex-col">
-    <div className="text-md text-gray-700 self-center">Chcesz kogoś pozdrowić?</div>
-    <div className="text-md text-gray-700">
+    <div className="text-md text-gray-300 self-center">Chcesz kogoś pozdrowić?</div>
+    <div className="text-md text-gray-300">
       Wyślij
       {' '}
       <span className="font-bold">SMS</span>
@@ -41,7 +41,7 @@ const ServiceMessage = () => (
   </div>
 );
 
-const Divider = () => <div className="mx-4 text-lg text-gray-600">|</div>;
+const Divider = () => <div className="mx-4 text-lg text-gray-200">|</div>;
 
 export default function BottomBar() {
   const [messages, setMessages] = useState<IMessage[]>([]);
@@ -84,7 +84,7 @@ export default function BottomBar() {
   return (
     <div className={`relative w-full flex-1 mb-12 mx-14 transition-all duration-1000 ${messages.length > 0 ? styles.visible : styles.hidden}`}>
       <div
-        className={`${styles.glowbox} w-full py-2 bg-white rounded-xl overflow-hidden min-h-[4rem]`}
+        className={`${styles.glowbox} w-full py-2 bg-zinc-950 rounded-xl overflow-hidden min-h-[4rem]`}
         style={{zIndex: 1}}
       >
         <Marquee

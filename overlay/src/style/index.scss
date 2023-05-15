@@ -6,6 +6,24 @@ body {
   height: 100%;
 }
 
+@font-face {
+  font-family: 'softeal';
+  src: url('../assets/medium.woff2') format('woff2');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'softeal';
+  src: url('../assets/light.woff2') format('woff2');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'softeal';
+  src: url('../assets/bold.woff2') format('woff2');
+  font-weight: 700;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
